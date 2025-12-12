@@ -1,5 +1,9 @@
 let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
 
+localStorage.setItem("hotelName", "Natalia Hotel");
+const hotelName = localStorage.getItem("hotelName");
+console.log("Loaded hotel name:", hotelName);
+
 const form = document.getElementById("transactionForm");
 
 if (form) {
