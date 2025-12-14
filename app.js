@@ -33,14 +33,29 @@ if (form) {
 const tableBody = document.querySelector("#transactionTable tbody");
 
 if (tableBody) {
-    transactions.forEach(t => {
+    tableBody.innerHTML = "";
+
+    transactions.forEach((t, index) => {
         const row = document.createElement("tr");
+
         row.innerHTML = `
             <td>${t.guestName}</td>
             <td>${t.roomNumber}</td>
             <td>$${t.amount}</td>
             <td>${t.date}</td>
+            <td>
+                <button onclick="deleteTransaction(${index})">
+                    Delete
+                </button>
+            </td>
         `;
+
         tableBody.appendChild(row);
     });
+}
+
+function deleteTransaction(index) {
+    transactions.splice(index, 1);
+    localStorage.setItem("transactions", JSON.stringify(transactions));
+    location.reload();
 }
